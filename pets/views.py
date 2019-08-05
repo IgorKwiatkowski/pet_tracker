@@ -24,6 +24,7 @@ class AllPetsView(View):
         context = {'pets': pets}
         return render(request, 'all_pets.html', context)
 
+
 class DayView(View):
     today = date.today()
 
@@ -42,3 +43,15 @@ class PetCreate(CreateView):
     model = Pet
     fields = ['name']
     success_url = reverse_lazy('/pet')
+
+
+class ProductCreate(CreateView):
+    model = Product
+    fields = ['name', 'unit']
+    success_url = reverse_lazy('/day')
+
+
+class DosageCreate(CreateView):
+    model = Dosage
+    fields = ['pet', 'product', 'amount', 'interval']
+    success_url = reverse_lazy('/day')

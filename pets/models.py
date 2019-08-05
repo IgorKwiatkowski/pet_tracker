@@ -5,17 +5,26 @@ import datetime
 class Pet(models.Model):
     name = models.CharField(max_length=64, verbose_name='Imię')
 
+    def __str__(self):
+        return self.name
+
+
 
 class Unit(models.Model):
     name = models.CharField(max_length=32, verbose_name='Jednostka')
+
+    def __str__(self):
+        return self.name
 
 
 class Product(models.Model):
     name = models.CharField(max_length=128, verbose_name='Nazwa')
     pets = models.ManyToManyField(Pet, through='Dosage',
                                   verbose_name='Zwierzę')
-    unit = models.ForeignKey(Unit, on_delete=models.SET_NULL, null=True)
+    unit = models.ForeignKey(Unit, on_delete=models.SET_NULL, null=True, verbose_name='jednostka')
 
+    def __str__(self):
+        return self.name
 
 class Dosage(models.Model):
     pet = models.ForeignKey(Pet, on_delete=models.CASCADE, verbose_name='Zwierzę')
@@ -28,6 +37,3 @@ class Dosage(models.Model):
     def apply_on_day(self, day):
         delta = day - self.date_added
         return delta.days % self.interval == 0
-
-
-

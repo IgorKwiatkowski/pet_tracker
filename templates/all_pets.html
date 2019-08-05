@@ -1,16 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>show pets</title>
-</head>
-<body>
+{%  extends 'base.html' %}
+{% block body %}
 <h2>Zwierzęta:</h2>
     <ul>
         {% for pet in pets %}
-            <li>{{ pet.name }}</li>
+            <li><a href="/pet/{{ pet.id }}">{{ pet.name }}</a></li>
         {%  endfor %}
     </ul>
 <a href="/add_pet">Dodaj zwierzę</a>
-</body>
-</html>
+{% endblock %}

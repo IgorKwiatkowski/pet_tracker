@@ -16,14 +16,16 @@ Including another URLconf
 from django.contrib import admin
 from django.conf.urls import url
 from django.urls import path
-from pets.views import SinglePetView, DayView, AllPetsView, PetCreate
+from pets.views import SinglePetView, DayView, AllPetsView, PetCreate, ProductCreate, DosageCreate
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    url(r'^pet/', AllPetsView.as_view(), name='/pet'),
-    url(r'^create_pet/', PetCreate.as_view()),
+    url(r'^pet/$', AllPetsView.as_view(), name='/pet'),
+    url(r'^add_pet/', PetCreate.as_view()),
     url(r'^pet/(?P<id>(\d)+)', SinglePetView.as_view()),
     url(r'^day/(?P<year>(\d){4})/(?P<month>(\d){1,2})/(?P<day>(\d){1,2})', DayView.as_view()),
-    url(r'^day/', DayView.as_view(), name='/day'),
+    url(r'^day/$', DayView.as_view(), name='/day'),
+    url(r'^add_product/$', ProductCreate.as_view(), name='/add_product'),
+    url(r'^add_dosage/', DosageCreate.as_view()),
 
 ]
