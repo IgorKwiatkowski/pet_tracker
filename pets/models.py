@@ -20,7 +20,7 @@ class Product(models.Model):
 class Dosage(models.Model):
     pet = models.ForeignKey(Pet, on_delete=models.CASCADE, verbose_name='Zwierzę')
     product = models.ForeignKey(Product, on_delete=models.CASCADE, verbose_name='Nazwa')
-    amount = models.DecimalField(verbose_name='Dawkowanie', max_digits=5,
+    amount = models.DecimalField(verbose_name='Ilość', max_digits=5,
                                  decimal_places=2)
     interval = models.IntegerField(verbose_name='Co ile dni')
     date_added = models.DateField(auto_now_add=True)

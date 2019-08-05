@@ -1,9 +1,13 @@
 from django.http import HttpResponse
 from django.shortcuts import render
+from django.urls import reverse_lazy
 from django.views import View
+from django.views.generic import CreateView
+
 from .models import Product, Pet, Unit, Dosage
 from django.utils.dateparse import parse_date
 import datetime
+from datetime import date
 
 
 class SinglePetView(View):
@@ -14,8 +18,16 @@ class SinglePetView(View):
         return render(request, 'single_pet.html', context)
 
 
+class AllPetsView(View):
+    def get(self, request):
+        pets = Pet.objects.all()
+        context = {'pets': pets}
+        return render(request, 'all_pets.html', context)
+
 class DayView(View):
-    def get(self, request, year, month, day):
+    today = date.today()
+
+    def get(self, request, year=today.year, month=today.month, day=today.day):
         date = parse_date(f'{year}-{month}-{day}')
         dosages = []
         for item in Dosage.objects.all():
@@ -24,3 +36,9 @@ class DayView(View):
         context = {'dosages': dosages,
                    'date': date}
         return render(request, 'day.html', context)
+
+
+class PetCreate(CreateView):
+    model = Pet
+    fields = ['name']
+    success_url = reverse_lazy('/pet')
