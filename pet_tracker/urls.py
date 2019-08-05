@@ -16,9 +16,11 @@ Including another URLconf
 from django.contrib import admin
 from django.conf.urls import url
 from django.urls import path
-from pets.views import SinglePetView
+from pets.views import SinglePetView, DayView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     url(r'^pet/(?P<id>(\d)+)', SinglePetView.as_view()),
+    url(r'^day/(?P<year>(\d){4})/(?P<month>(\d){1,2})/(?P<day>(\d){1,2})', DayView.as_view()),
+
 ]

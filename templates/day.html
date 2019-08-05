@@ -5,10 +5,10 @@
     <title>show pets</title>
 </head>
 <body>
-<h2>{{ pet.name }}</h2>
+<h2>{{ date }}</h2>
     <ul>
         {% for dosage in dosages %}
-            <li>{{ dosage.product.name }} co {{ dosage.interval }} dni w ilości {{ dosage.amount }}
+            <li>{{ dosage.pet.name }} dostaje {{ dosage.product.name }} w ilości {{ dosage.amount }}
                 {{ dosage.product.unit.name }}</li>
         {%  endfor %}
     </ul>

@@ -22,7 +22,12 @@ class Dosage(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE, verbose_name='Nazwa')
     amount = models.DecimalField(verbose_name='Dawkowanie', max_digits=5,
                                  decimal_places=2)
-    time_interval = models.IntegerField(verbose_name='Co ile dni')
+    interval = models.IntegerField(verbose_name='Co ile dni')
     date_added = models.DateField(auto_now_add=True)
+
+    def apply_on_day(self, day):
+        delta = day - self.date_added
+        return delta.days % self.interval == 0
+
 
 
