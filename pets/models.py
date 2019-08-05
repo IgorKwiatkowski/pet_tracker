@@ -1,4 +1,5 @@
 from django.db import models
+import datetime
 
 
 class Pet(models.Model):
@@ -22,3 +23,6 @@ class Dosage(models.Model):
     amount = models.DecimalField(verbose_name='Dawkowanie', max_digits=5,
                                  decimal_places=2)
     time_interval = models.IntegerField(verbose_name='Co ile dni')
+    date_added = models.DateField(auto_now_add=True)
+
+

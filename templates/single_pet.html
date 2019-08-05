@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>show pets</title>
+</head>
+<body>
+<h2>{{ pet.name }}</h2>
+    <ul>
+        {% for dosage in dosages %}
+            <li>{{ dosage.product.name }} co {{ dosage.time_interval }} dni w ilości {{ dosage.amount }}
+                {{ dosage.product.unit.name }}</li>
+        {%  endfor %}
+    </ul>
+<a href="/add_pet">Dodaj zwierzę</a>
+</body>
+</html>
