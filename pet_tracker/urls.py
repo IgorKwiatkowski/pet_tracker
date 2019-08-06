@@ -16,7 +16,8 @@ Including another URLconf
 from django.contrib import admin
 from django.conf.urls import url
 from django.urls import path
-from pets.views import SinglePetView, DayView, AllPetsView, PetCreate, ProductCreate, DosageCreate
+
+from pets.views import SinglePetView, DayView, AllPetsView, UpdateDosageView, PetCreate, ProductCreate, DeleteDosageView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -26,6 +27,8 @@ urlpatterns = [
     url(r'^day/(?P<year>(\d){4})/(?P<month>(\d){1,2})/(?P<day>(\d){1,2})', DayView.as_view()),
     url(r'^day/$', DayView.as_view(), name='/day'),
     url(r'^add_product/$', ProductCreate.as_view(), name='/add_product'),
-    url(r'^add_dosage/', DosageCreate.as_view()),
+    # url(r'^add_dosage/', DosageCreate.as_view()),
+    url(r'^delete_dosage/(?P<pk>\d+)', DeleteDosageView.as_view()),
+    url(r'^update_dosage/(?P<pk>\d+)', UpdateDosageView.as_view()),
 
 ]

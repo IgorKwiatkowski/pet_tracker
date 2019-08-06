@@ -1,12 +1,12 @@
-from django.http import HttpResponse
-from django.shortcuts import render
-from django.urls import reverse_lazy
+from django.http import HttpResponse, HttpResponseRedirect
+from django.shortcuts import render, redirect
+from django.urls import reverse_lazy, reverse
 from django.views import View
-from django.views.generic import CreateView
+from django.views.generic import CreateView, DeleteView, UpdateView
 
 from .models import Product, Pet, Unit, Dosage
+from .forms import AddDosageForm
 from django.utils.dateparse import parse_date
-import datetime
 from datetime import date
 
 
@@ -14,8 +14,24 @@ class SinglePetView(View):
     def get(self, request, id):
         pet = Pet.objects.get(id=id)
         context = {'dosages': Dosage.objects.filter(pet=pet),
-                   'pet': pet}
+                   'pet': pet,
+                   'form': AddDosageForm(initial={'pet': pet})}
         return render(request, 'single_pet.html', context)
+
+    def post(self, request, id):
+        form = AddDosageForm(request.POST)
+        if form.is_valid():
+            pet = form.cleaned_data['pet']
+            product = form.cleaned_data['product']
+            amount = form.cleaned_data['amount']
+            interval = form.cleaned_data['interval']
+            new_dosage = Dosage.objects.create(pet=pet,
+                                               product=product,
+                                               amount=amount,
+                                               interval=interval)
+            return HttpResponseRedirect(self.request.path_info)
+        else:
+            return HttpResponse('babol w formularzu!')
 
 
 class AllPetsView(View):
@@ -31,11 +47,13 @@ class DayView(View):
     def get(self, request, year=today.year, month=today.month, day=today.day):
         date = parse_date(f'{year}-{month}-{day}')
         dosages = []
-        for item in Dosage.objects.all():
+        pets = Pet.objects.all()
+        for item in Dosage.objects.order_by('pet__name'):
             if item.apply_on_day(date):
                 dosages.append(item)
         context = {'dosages': dosages,
-                   'date': date}
+                   'date': date,
+                   'pets': pets}
         return render(request, 'day.html', context)
 
 
@@ -51,7 +69,13 @@ class ProductCreate(CreateView):
     success_url = reverse_lazy('/day')
 
 
-class DosageCreate(CreateView):
+class DeleteDosageView(DeleteView):
+    model = Dosage
+    success_url = '/day'
+
+
+class UpdateDosageView(UpdateView):
     model = Dosage
     fields = ['pet', 'product', 'amount', 'interval']
-    success_url = reverse_lazy('/day')
+    template_name = 'pets/dosage_form.html'
+    success_url = '/day'

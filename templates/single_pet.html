@@ -1,10 +1,19 @@
 {%  extends 'base.html' %}
+{% load static %}
 {% block body %}
 <h2>{{ pet.name }}</h2>
     <ul>
         {% for dosage in dosages %}
             <li>{{ dosage.product.name }} co {{ dosage.interval }} dni w ilości {{ dosage.amount }}
-                {{ dosage.product.unit.name }}</li>
+                {{ dosage.product.unit.name }} <a href="/update_dosage/{{ dosage.id }}">ZMIEŃ</a> <a href="/delete_dosage/{{ dosage.id }}">USUŃ DAWKOWANIE</a></li>
         {%  endfor %}
     </ul>
+    {% if form %}
+        <h3>Nowe dawkowanie</h3>
+        <form action="" method="post">
+            {% csrf_token %}
+            {{ form }}
+            <input type="submit" value="Wyślij">
+        </form>
+    {% endif %}
 {% endblock %}
