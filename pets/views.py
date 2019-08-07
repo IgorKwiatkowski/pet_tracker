@@ -90,3 +90,4 @@ class UpdateDosageView(UpdateView):
     fields = ['pet', 'product', 'amount', 'interval']
     template_name = 'pets/dosage_form.html'
     success_url = '/day'
+
