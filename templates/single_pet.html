@@ -1,13 +1,20 @@
 {%  extends 'base.html' %}
 {% load static %}
 {% block body %}
+
+<div class="container">
 <h2>{{ pet.name }}</h2>
-    <ul>
+    <table class="table table-bordered table-striped">
         {% for dosage in dosages %}
-            <li>{{ dosage.product.name }} co {{ dosage.interval }} dni w ilości {{ dosage.amount }}
-                {{ dosage.product.unit.name }} <a href="/update_dosage/{{ dosage.id }}">ZMIEŃ</a> <a href="/delete_dosage/{{ dosage.id }}">USUŃ DAWKOWANIE</a></li>
+            <tr>
+                <td>{{ dosage.product.name }}</td>
+                <td>co {{ dosage.interval }} dni</td>
+                <td>w ilości {{ dosage.amount }} {{ dosage.product.unit.name }}</td>
+                <td class="text-center"><a href="/update_dosage/{{ dosage.id }}">ZMIEŃ</a></td>
+                <td class="text-center"><a href="/delete_dosage/{{ dosage.id }}">USUŃ</a></td>
+            </tr>
         {%  endfor %}
-    </ul>
+    </table>
     {% if form %}
         <h3>Nowe dawkowanie</h3>
         <form action="" method="post">
@@ -16,4 +23,5 @@
             <input type="submit" value="Wyślij">
         </form>
     {% endif %}
+</div>
 {% endblock %}

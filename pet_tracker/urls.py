@@ -17,10 +17,11 @@ from django.contrib import admin
 from django.conf.urls import url
 from django.urls import path
 
-from pets.views import SinglePetView, DayView, AllPetsView, UpdateDosageView, PetCreate, ProductCreate, DeleteDosageView
+from pets.views import SinglePetView, DayView, AllPetsView, UpdateDosageView, ProductView, PetCreate, ProductCreate, DeleteDosageView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    url(r'^$', DayView.as_view()),
     url(r'^pet/$', AllPetsView.as_view(), name='/pet'),
     url(r'^add_pet/', PetCreate.as_view()),
     url(r'^pet/(?P<id>(\d)+)', SinglePetView.as_view()),
@@ -30,5 +31,6 @@ urlpatterns = [
     # url(r'^add_dosage/', DosageCreate.as_view()),
     url(r'^delete_dosage/(?P<pk>\d+)', DeleteDosageView.as_view()),
     url(r'^update_dosage/(?P<pk>\d+)', UpdateDosageView.as_view()),
+    url(r'^product/(?P<id>\d+)', ProductView.as_view()),
 
 ]

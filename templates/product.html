@@ -1,0 +1,17 @@
+{%  extends 'base.html' %}
+{% block body %}
+<div class="container">
+<h2>{{ product.name }}</h2>
+    <h4>Kto to je?</h4>
+    <table class="table table-bordered table-striped">
+    {% for dosage in dosages %}
+        <tr>
+            <td>{{ dosage.pet.name }}</td>
+            <td>{{ dosage.amount }} {{ dosage.product.unit.name }}</td>
+            <td>co {{ dosage.interval }} dni</td>
+        </tr>
+    {% endfor %}
+    </table>
+    <h5>Spożycie wynosi {{ consumption }} {{ product.unit.name }} dziennie.</h5>
+</div>
+{% endblock %}

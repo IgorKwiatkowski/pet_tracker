@@ -41,6 +41,17 @@ class AllPetsView(View):
         return render(request, 'all_pets.html', context)
 
 
+class ProductView(View):
+    def get(self, request, id):
+        product = Product.objects.get(id=id)
+        dosages = Dosage.objects.filter(product=product)
+        consumption = 0
+        for dosage in dosages:
+            rate = float(dosage.amount) * (1 / dosage.interval)
+            consumption += rate
+        return render(request, 'product.html', {'product': product, 'dosages': dosages, 'consumption': consumption})
+
+
 class DayView(View):
     today = date.today()
 
