@@ -13,5 +13,6 @@
     {% endfor %}
     </table>
     <h5>Spożycie wynosi {{ consumption }} {{ product.unit.name }} dziennie.</h5>
+    <a href="/delete_product/{{ product.id }}" class="btn btn-default btn-lg" role="button">Usuń ten produkt</a>
 </div>
 {% endblock %}
