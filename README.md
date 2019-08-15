@@ -3,7 +3,7 @@ Simple Django app for tracking my pets' food and meds
 
 Hello and thank you for having a look at my first "serious" project. It was a graduation project for my Python Back End Developer course at Coders Lab.
 
-I apologize for the mess in the branches. I was trying to rush hosting the project on AWS before the deadline, failed, and left a bit of a mess, but the develop branch should run fine locally.
+I apologize for the mess in the branches. I was trying to rush hosting the project on AWS before the deadline, failed, and left a bit of a mess.
 
 I wrote this program because I needed a tool for tracking my five pets, each with their separate food and meds in different dosages, applied on different days in different intervals. This basic functionality runs alright with a small database.
 
