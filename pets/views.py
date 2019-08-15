@@ -71,7 +71,7 @@ class DayView(View):
 class PetCreate(CreateView):
     model = Pet
     fields = ['name']
-    success_url = reverse_lazy('/pet')
+    success_url = reverse_lazy('/day')
 
 
 class ProductCreate(CreateView):
