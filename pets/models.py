@@ -9,7 +9,6 @@ class Pet(models.Model):
         return self.name
 
 
-
 class Unit(models.Model):
     name = models.CharField(max_length=32, verbose_name='Jednostka')
 
@@ -25,6 +24,7 @@ class Product(models.Model):
 
     def __str__(self):
         return self.name
+
 
 class Dosage(models.Model):
     pet = models.ForeignKey(Pet, on_delete=models.CASCADE, verbose_name='Zwierzę')
