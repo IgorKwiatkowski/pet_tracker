@@ -7,7 +7,7 @@ from django.views.generic import CreateView, DeleteView, UpdateView
 from .models import Product, Pet, Unit, Dosage
 from .forms import AddDosageForm
 from django.utils.dateparse import parse_date
-from datetime import date
+from datetime import date, datetime, timedelta
 
 
 class SinglePetView(View):
@@ -59,6 +59,7 @@ class DayView(View):
         date = parse_date(f'{year}-{month}-{day}')
         dosages = []
         pets = Pet.objects.all()
+
         for item in Dosage.objects.order_by('pet__name'):
             if item.apply_on_day(date):
                 dosages.append(item)
@@ -68,19 +69,24 @@ class DayView(View):
         return render(request, 'day.html', context)
 
 
-class PetCreate(CreateView):
+class PetCreateView(CreateView):
     model = Pet
     fields = ['name']
     success_url = reverse_lazy('/day')
 
 
-class ProductCreate(CreateView):
+class ProductCreateView(CreateView):
     model = Product
     fields = ['name', 'unit']
     success_url = reverse_lazy('/day')
 
 
-class DeleteDosageView(DeleteView):
+class ProductDeleteView(DeleteView):
+    model = Product
+    success_url = '/day'
+
+
+class DosageDeleteView(DeleteView):
     model = Dosage
     success_url = '/day'
 
