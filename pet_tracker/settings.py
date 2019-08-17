@@ -19,12 +19,13 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '&w1#l2#x@#_3yo)o@l_!w4#tdtsqyl=)ny=%6$qrwhnc=yj6_8'
+# SECRET_KEY = '&w1#l2#x@#_3yo)o@l_!w4#tdtsqyl=)ny=%6$qrwhnc=yj6_8'
+SECRET_KEY = os.environ.get('PET_TRACKER_SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['mypettracker.herokuapp.com']
 
 # Application definition
 
