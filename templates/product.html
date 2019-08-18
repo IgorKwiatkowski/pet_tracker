@@ -6,10 +6,12 @@
     <table class="table table-bordered table-striped">
     {% for dosage in dosages %}
         <tr>
-            <td>{{ dosage.pet.name }}</td>
+            <td><a href="/pet/{{ dosage.pet.id }}">{{ dosage.pet.name }}</a></td>
             <td>{{ dosage.amount }} {{ dosage.product.unit.name }}</td>
             <td>co {{ dosage.interval }} dni</td>
-            <td>{{ dosage.notes }}</td>
+            <td>{{ dosage.notes|default_if_none:"" }}</td>
+            <td class="text-center"><a href="/update_dosage/{{ dosage.id }}">ZMIEŃ</a></td>
+            <td class="text-center"><a href="/delete_dosage/{{ dosage.id }}">USUŃ</a></td>
         </tr>
     {% endfor %}
     </table>
