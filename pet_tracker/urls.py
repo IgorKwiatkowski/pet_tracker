@@ -15,13 +15,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.conf.urls import url
-from django.urls import path
+from django.urls import path, include
 
 from pets.views import SinglePetView, DayView, AllPetsView, UpdateDosageView, ProductView, PetCreateView, ProductCreateView, \
     DosageDeleteView, ProductDeleteView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('accounts/', include('django.contrib.auth.urls')),
     url(r'^$', DayView.as_view()),
     url(r'^pet/$', AllPetsView.as_view(), name='/pet'),
     url(r'^add_pet/', PetCreateView.as_view()),
