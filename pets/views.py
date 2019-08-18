@@ -93,7 +93,7 @@ class DosageDeleteView(DeleteView):
 
 class UpdateDosageView(UpdateView):
     model = Dosage
-    fields = ['pet', 'product', 'amount', 'interval']
+    fields = ['pet', 'product', 'amount', 'interval', 'date_added', 'notes']
     template_name = 'pets/dosage_form.html'
     success_url = '/day'
 

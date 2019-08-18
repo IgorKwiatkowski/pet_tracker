@@ -1,5 +1,8 @@
 from django.db import models
+from django.utils import timezone
 import datetime
+
+from django.template.backends import django
 
 
 class Pet(models.Model):
@@ -32,7 +35,8 @@ class Dosage(models.Model):
     amount = models.DecimalField(verbose_name='Ilość', max_digits=5,
                                  decimal_places=2)
     interval = models.IntegerField(verbose_name='Co ile dni')
-    date_added = models.DateField(auto_now_add=True)
+    date_added = models.DateField(verbose_name='Od kiedy', default=timezone.now)
+    notes = models.TextField(null=True, verbose_name='Uwagi')
 
     def apply_on_day(self, day):
         delta = day - self.date_added
