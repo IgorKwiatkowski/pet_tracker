@@ -36,7 +36,7 @@ class Dosage(models.Model):
                                  decimal_places=2)
     interval = models.IntegerField(verbose_name='Co ile dni')
     date_added = models.DateField(verbose_name='Od kiedy', default=timezone.now)
-    notes = models.TextField(null=True, verbose_name='Uwagi')
+    notes = models.TextField(null=True, blank=True, verbose_name='Uwagi')
 
     def apply_on_day(self, day):
         delta = day - self.date_added
