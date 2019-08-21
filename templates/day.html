@@ -5,7 +5,7 @@
         {%  for pet in pets %}
             <p>
             <table class="table table-bordered table-striped">
-                <th colspan="4"><a href="/pet/{{ pet.id }}">{{ pet.name }}</a></th>
+                <th colspan="5"><a href="/pet/{{ pet.id }}">{{ pet.name }}</a></th>
                     {% for dosage in dosages %}
 
                         {% if dosage.pet.id == pet.id %}
@@ -13,6 +13,7 @@
                             <td><a href="/product/{{ dosage.product.id }}">{{ dosage.product.name }}</a></td>
                             <td>{{ dosage.amount }} {{ dosage.product.unit.name }}</td>
                             <td>{{ dosage.notes|default_if_none:"" }}</td>
+{#                            TODO notes not showing correctly #}
                             <td class="text-center"><a href="/update_dosage/{{ dosage.id }}">ZMIEŃ</a></td>
                             <td class="text-center"><a href="/delete_dosage/{{ dosage.id }}">USUŃ</a></td>
                         </tr>

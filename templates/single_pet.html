@@ -10,6 +10,7 @@
                 <td><a href="/product/{{ dosage.product.id }}">{{ dosage.product.name }}</a></td>
                 <td>co {{ dosage.interval }} dni</td>
                 <td>w ilości {{ dosage.amount }} {{ dosage.product.unit.name }}</td>
+                <td>{{ dosage.notes|default_if_none:"" }}</td>
                 <td class="text-center"><a href="/update_dosage/{{ dosage.id }}">ZMIEŃ</a></td>
                 <td class="text-center"><a href="/delete_dosage/{{ dosage.id }}">USUŃ</a></td>
             </tr>

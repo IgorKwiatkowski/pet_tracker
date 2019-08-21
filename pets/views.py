@@ -25,10 +25,12 @@ class SinglePetView(View):
             product = form.cleaned_data['product']
             amount = form.cleaned_data['amount']
             interval = form.cleaned_data['interval']
+            notes = form.cleaned_data['notes']
             new_dosage = Dosage.objects.create(pet=pet,
                                                product=product,
                                                amount=amount,
-                                               interval=interval)
+                                               interval=interval,
+                                               notes=notes)
             return HttpResponseRedirect(self.request.path_info)
         else:
             return HttpResponse('babol w formularzu!')
@@ -93,7 +95,7 @@ class DosageDeleteView(DeleteView):
 
 class UpdateDosageView(UpdateView):
     model = Dosage
-    fields = ['pet', 'product', 'amount', 'interval', 'date_added', 'notes']  #TODO make notes optional
+    fields = ['pet', 'product', 'amount', 'interval', 'date_added', 'notes']
     template_name = 'pets/dosage_form.html'
     success_url = '/day'
 
