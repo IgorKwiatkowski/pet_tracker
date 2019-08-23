@@ -17,4 +17,4 @@ There are no user accounts or any related features, because the program's intend
 How can I see days other than today or tomorrow?
 In everyday use the "today" view is by far the most important, so this feature is not high on the list. You can pass the date into the URL in /day/YYYY/MM/DD format.
 
-![Today view](https://github.com/IgorKwiatkowski/pet_tracker/tree/screenshots/screenshots/today_view.png?raw=true "Today View")
+![Today view](https://github.com/IgorKwiatkowski/pet_tracker/raw/screenshots/screenshots/today_view.png?raw=true "Today View")
