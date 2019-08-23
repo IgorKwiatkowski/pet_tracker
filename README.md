@@ -25,7 +25,7 @@ Screenshots:
 
 ### Pet view:
 
-![Pet view](https://github.com/IgorKwiatkowski/pet_tracker/raw/screenshots/screenshots/pet_view.pngraw=true "Pet View")
+![Pet view](https://github.com/IgorKwiatkowski/pet_tracker/raw/screenshots/screenshots/pet_view.png?raw=true "Pet View")
 
 ### Product view:
 
